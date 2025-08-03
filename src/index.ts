@@ -1,2 +1,7 @@
+export { makeApp } from "./app";
 export { splitOwnerRepo } from "./inputs";
-export { getPullRequestReviewDecision } from "./pulls";
+export {
+  getPullRequestReviewDecision,
+  prettyPullRequest,
+  Reviewer,
+} from "./pulls";

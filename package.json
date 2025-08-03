@@ -5,21 +5,22 @@
   "type": "module",
   "files": [
     "approve/dist/",
-    "approve/dist"
+    "approve/dist",
+    "all-repos-approve/dist"
   ],
-  "module": "./approve/dist/index.js",
-  "types": "./approve/dist/index.d.ts",
+  "module": "./all-repos-approve/dist/index.js",
+  "types": "./all-repos-approve/dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
-        "types": "./approve/dist/index.d.ts",
-        "default": "./approve/dist/index.js"
+        "types": "./all-repos-approve/dist/index.d.ts",
+        "default": "./all-repos-approve/dist/index.js"
       }
     },
     "./main": {
       "import": {
-        "types": "./approve/dist/main.d.ts",
-        "default": "./approve/dist/main.js"
+        "types": "./all-repos-approve/dist/main.d.ts",
+        "default": "./all-repos-approve/dist/main.js"
       }
     }
   },
@@ -50,10 +51,14 @@
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.1",
+    "@octokit/app": "^16.0.1",
     "@octokit/core": "^7.0.3",
     "@octokit/graphql": "^9.0.1",
     "@octokit/openapi-types": "^25.1.0",
-    "consola": "^3.4.2"
+    "@octokit/plugin-paginate-rest": "^13.1.1",
+    "@octokit/plugin-rest-endpoint-methods": "^16.0.0",
+    "consola": "^3.4.2",
+    "octokit": "^5.0.3"
   },
   "devDependencies": {
     "@biomejs/biome": "latest",

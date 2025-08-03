@@ -21,4 +21,7 @@ function defineActionConfig(p: string): DefineConfigItem {
   };
 }
 
-export default defineConfig([defineActionConfig("approve")]);
+export default defineConfig([
+  defineActionConfig("approve"),
+  defineActionConfig("all-repos-approve"),
+]);
