@@ -4,7 +4,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-ACTIONS=(approve)
+ACTIONS=(
+  all-repos-approve
+  approve
+)
 DIST_DIR='dist'
 
 mkdir --parents --verbose "$DIST_DIR"
