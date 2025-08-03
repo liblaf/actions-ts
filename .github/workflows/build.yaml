@@ -1,0 +1,41 @@
+name: Build
+
+on:
+  push:
+    branches-ignore:
+      - dist
+      - gh-pages
+
+concurrency:
+  group: ${{ github.workflow }}@${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Setup mise
+        uses: jdx/mise-action@v2
+      - name: Install Dependencies
+        run: |-
+          bun install
+          bun pm bin >> "$GITHUB_PATH"
+      - name: Build
+        run: mise run dist
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - if: ${{ github.ref == 'refs/heads/main' }}
+        name: Deploy to `dist` Branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: dist
+          single-commit: true

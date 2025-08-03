@@ -1,0 +1,1 @@
+export { splitOwnerRepo } from "./repository";

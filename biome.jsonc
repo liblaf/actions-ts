@@ -1,4 +1,9 @@
 {
   "$schema": "https://biomejs.dev/schemas/latest/schema.json",
-  "extends": [".config/linters/biome.jsonc"]
+  "extends": [".config/linters/biome.jsonc"],
+  "graphql": {
+    "formatter": {
+      "enabled": true
+    }
+  }
 }

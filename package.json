@@ -3,6 +3,26 @@
   "description": "TODO",
   "version": "0.0.0",
   "type": "module",
+  "files": [
+    "approve/dist/",
+    "approve/dist"
+  ],
+  "module": "./approve/dist/index.js",
+  "types": "./approve/dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./approve/dist/index.d.ts",
+        "default": "./approve/dist/index.js"
+      }
+    },
+    "./main": {
+      "import": {
+        "types": "./approve/dist/main.d.ts",
+        "default": "./approve/dist/main.js"
+      }
+    }
+  },
   "keywords": [
     "TODO"
   ],
@@ -27,9 +47,17 @@
     "lint": "biome check --write",
     "prepack": "npm run build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1",
+    "@octokit/core": "^7.0.3",
+    "@octokit/graphql": "^9.0.1",
+    "@octokit/openapi-types": "^25.1.0",
+    "consola": "^3.4.2"
+  },
   "devDependencies": {
     "@biomejs/biome": "latest",
+    "@github/local-action": "^5.1.0",
     "@tsconfig/bun": "latest",
     "@types/bun": "latest",
     "bunup": "latest"
