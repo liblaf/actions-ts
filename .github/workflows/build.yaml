@@ -13,6 +13,8 @@ concurrency:
 jobs:
   build:
     name: Build
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,7 +35,7 @@ jobs:
           name: dist
           path: dist
       - if: ${{ github.ref == 'refs/heads/main' }}
-        name: Deploy to `dist` Branch
+        name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
