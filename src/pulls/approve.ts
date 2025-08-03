@@ -43,13 +43,14 @@ export function prettyPullRequest(pull: PullRequest): string {
 
 export class Reviewer {
   constructor(
+    private readonly reviewOctokit: Api,
     public readonly authors: string[] = [],
     public readonly bot: boolean = true,
     public readonly labels: string[] = [],
   ) {}
 
   public async approvePullRequest(
-    api: Api & { graphql: graphql },
+    octokit: { graphql: graphql },
     pull: PullRequest,
   ): Promise<void> {
     if (pull.state !== "open") {
@@ -77,7 +78,7 @@ export class Reviewer {
         return;
       }
     }
-    const reviewDecision = await getPullRequestReviewDecision(api.graphql, {
+    const reviewDecision = await getPullRequestReviewDecision(octokit.graphql, {
       owner: pull.base.repo.owner.login,
       repo: pull.base.repo.name,
       pull_number: pull.number,
@@ -88,7 +89,7 @@ export class Reviewer {
       );
       return;
     }
-    await api.rest.pulls.createReview({
+    await this.reviewOctokit.rest.pulls.createReview({
       owner: pull.base.repo.owner.login,
       repo: pull.base.repo.name,
       pull_number: pull.number,
@@ -99,7 +100,7 @@ export class Reviewer {
   }
 
   public async approveRepository(
-    api: Api & { graphql: graphql; paginate: PaginateInterface },
+    octokit: Api & { graphql: graphql; paginate: PaginateInterface },
     repository: Repository,
   ): Promise<void> {
     if (repository.archived) {
@@ -111,8 +112,8 @@ export class Reviewer {
       return;
     }
     const futures: Promise<void>[] = [];
-    for await (const { data: pulls } of api.paginate.iterator(
-      api.rest.pulls.list,
+    for await (const { data: pulls } of octokit.paginate.iterator(
+      octokit.rest.pulls.list,
       {
         owner: repository.owner.login,
         repo: repository.name,
@@ -120,7 +121,7 @@ export class Reviewer {
       },
     )) {
       for (const pull of pulls)
-        futures.push(this.approvePullRequest(api, pull));
+        futures.push(this.approvePullRequest(octokit, pull));
     }
     await Promise.all(futures);
   }

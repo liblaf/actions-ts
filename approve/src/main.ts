@@ -17,7 +17,7 @@ export async function run(): Promise<void> {
   const token: string = core.getInput("token", { required: true });
   const [owner, repo] = splitOwnerRepo(repository);
   const octokit = github.getOctokit(token);
-  const reviewer = new Reviewer(authors, bot, labels);
+  const reviewer = new Reviewer(octokit as any, authors, bot, labels);
   if (pull_number) {
     const { data: pull } = await octokit.rest.pulls.get({
       owner,
