@@ -1,0 +1,46 @@
+{
+  "name": "@liblaf/actions",
+  "description": "TODO",
+  "version": "0.0.0",
+  "type": "module",
+  "keywords": [
+    "TODO"
+  ],
+  "homepage": "https://github.com/liblaf/actions",
+  "bugs": {
+    "url": "https://github.com/liblaf/actions/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "liblaf",
+    "url": "https://github.com/liblaf",
+    "email": "30631553+liblaf@users.noreply.github.com"
+  },
+  "bin": {},
+  "repository": "github:liblaf/actions",
+  "funding": {
+    "url": "https://github.com/liblaf/actions?sponsor=1",
+    "type": "github"
+  },
+  "scripts": {
+    "build": "bunup",
+    "lint": "biome check --write",
+    "prepack": "npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "@tsconfig/bun": "latest",
+    "@types/bun": "latest",
+    "bunup": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "latest"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
+  },
+  "readme": "README.md"
+}
