@@ -5,7 +5,7 @@ set -o nounset
 set -o pipefail
 
 action="$1"
-cd "$action/"
+cd "dist/$action/"
 
 dotenv='.env'
 if [[ ! -f $dotenv ]]; then

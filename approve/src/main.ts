@@ -1,9 +1,11 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { Reviewer, splitOwnerRepo } from "../../src";
+import type { Octokit } from "octokit";
+import { Reviewer, splitOwnerRepo } from "../../shared";
 
 function getPullNumber(): number | undefined {
-  const input = core.getInput("pull-number");
+  const input: string = core.getInput("pull-number");
+  if (input === "all") return undefined;
   if (input) return parseInt(input);
   return github.context.payload.pull_request?.number;
 }
@@ -15,19 +17,27 @@ export async function run(): Promise<void> {
   const pull_number: number | undefined = getPullNumber();
   const repository: string = core.getInput("repository", { required: true });
   const token: string = core.getInput("token", { required: true });
-  const [owner, repo] = splitOwnerRepo(repository);
-  const octokit = github.getOctokit(token);
-  const reviewer = new Reviewer(octokit as any, authors, bot, labels);
+  const octokit: Octokit = github.getOctokit(token) as unknown as Octokit;
+  const reviewer = new Reviewer(octokit, authors, bot, labels);
   if (pull_number) {
+    const [owner, repo] = splitOwnerRepo(repository);
     const { data: pull } = await octokit.rest.pulls.get({
       owner,
       repo,
       pull_number,
     });
-    octokit.rest;
-    await reviewer.approvePullRequest(octokit as any, pull);
-  } else {
-    const { data: repository } = await octokit.rest.repos.get({ owner, repo });
-    await reviewer.approveRepository(octokit as any, repository);
+    await reviewer.approvePullRequest(octokit, pull);
+    return;
   }
+  const [owner, repo] = repository.split("/");
+  if (owner && repo) {
+    const { data: repoData } = await octokit.rest.repos.get({ owner, repo });
+    await reviewer.approveRepository(octokit, repoData);
+    return;
+  }
+  if (owner) {
+    await reviewer.approveOwner(octokit, owner);
+    return;
+  }
+  throw new Error(`Input required and not supplied: repository`);
 }

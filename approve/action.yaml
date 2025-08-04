@@ -17,6 +17,10 @@ inputs:
   labels:
     description: labels
     required: false
+  owner:
+    description: The owner of the repository. For example, `octocat`.
+    required: false
+    default: ${{ github.repository_owner }}
   pull-number:
     description: The pull request number to approve.
     required: false

@@ -4,23 +4,67 @@
   "version": "0.0.0",
   "type": "module",
   "files": [
-    "approve/dist/",
-    "approve/dist",
-    "all-repos-approve/dist"
+    "dist"
   ],
-  "module": "./all-repos-approve/dist/index.js",
-  "types": "./all-repos-approve/dist/index.d.ts",
   "exports": {
-    ".": {
+    "./approve/src": {
       "import": {
-        "types": "./all-repos-approve/dist/index.d.ts",
-        "default": "./all-repos-approve/dist/index.js"
+        "types": "./dist/approve/src/index.d.ts",
+        "default": "./dist/approve/src/index.js"
+      },
+      "require": {
+        "types": "./dist/approve/src/index.d.cts",
+        "default": "./dist/approve/src/index.cjs"
       }
     },
-    "./main": {
+    "./approve/src/main": {
       "import": {
-        "types": "./all-repos-approve/dist/main.d.ts",
-        "default": "./all-repos-approve/dist/main.js"
+        "types": "./dist/approve/src/main.d.ts",
+        "default": "./dist/approve/src/main.js"
+      },
+      "require": {
+        "types": "./dist/approve/src/main.d.cts",
+        "default": "./dist/approve/src/main.cjs"
+      }
+    },
+    "./release/src": {
+      "import": {
+        "types": "./dist/release/src/index.d.ts",
+        "default": "./dist/release/src/index.js"
+      },
+      "require": {
+        "types": "./dist/release/src/index.d.cts",
+        "default": "./dist/release/src/index.cjs"
+      }
+    },
+    "./release/src/main": {
+      "import": {
+        "types": "./dist/release/src/main.d.ts",
+        "default": "./dist/release/src/main.js"
+      },
+      "require": {
+        "types": "./dist/release/src/main.d.cts",
+        "default": "./dist/release/src/main.cjs"
+      }
+    },
+    "./template/src": {
+      "import": {
+        "types": "./dist/template/src/index.d.ts",
+        "default": "./dist/template/src/index.js"
+      },
+      "require": {
+        "types": "./dist/template/src/index.d.cts",
+        "default": "./dist/template/src/index.cjs"
+      }
+    },
+    "./template/src/main": {
+      "import": {
+        "types": "./dist/template/src/main.d.ts",
+        "default": "./dist/template/src/main.js"
+      },
+      "require": {
+        "types": "./dist/template/src/main.d.cts",
+        "default": "./dist/template/src/main.cjs"
       }
     }
   },

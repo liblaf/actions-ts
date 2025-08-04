@@ -28,7 +28,7 @@ interface PullRequest {
 }
 
 interface Repository {
-  archived: boolean;
+  archived?: boolean;
   fork: boolean;
   full_name: string;
   name: string;
@@ -122,6 +122,25 @@ export class Reviewer {
     )) {
       for (const pull of pulls)
         futures.push(this.approvePullRequest(octokit, pull));
+    }
+    await Promise.all(futures);
+  }
+
+  public async approveOwner(
+    octokit: Api & { graphql: graphql; paginate: PaginateInterface },
+    owner: string,
+  ): Promise<void> {
+    const futures: Promise<void>[] = [];
+    for await (const { data: repositories } of octokit.paginate.iterator(
+      octokit.rest.repos.listForUser,
+      {
+        username: owner,
+        type: "owner",
+      },
+    )) {
+      for (const repository of repositories) {
+        futures.push(this.approveRepository(octokit, repository));
+      }
     }
     await Promise.all(futures);
   }
