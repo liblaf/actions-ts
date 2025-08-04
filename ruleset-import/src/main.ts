@@ -2,7 +2,6 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 import type { GitHub } from "@actions/github/lib/utils";
 import type { components } from "@octokit/openapi-types";
-import consola from "consola";
 import { splitOwnerRepo } from "../../shared";
 
 type Octokit = InstanceType<typeof GitHub>;
@@ -71,9 +70,7 @@ export async function run(): Promise<void> {
       conditions: sourceRuleset.conditions as any,
       rules: sourceRuleset.rules as any,
     });
-    const msg: string = `Update ruleset "${name}" in repository "${targetRepository}"`;
-    consola.success(msg);
-    core.notice(msg);
+    core.notice(`Update ruleset "${name}" in repository "${targetRepository}"`);
   } else {
     await octokit.rest.repos.createRepoRuleset({
       owner,
@@ -85,8 +82,6 @@ export async function run(): Promise<void> {
       conditions: sourceRuleset.conditions as any,
       rules: sourceRuleset.rules as any,
     });
-    const msg: string = `Create ruleset "${name}" in repository "${targetRepository}"`;
-    consola.success(msg);
-    core.notice(msg);
+    core.notice(`Create ruleset "${name}" in repository "${targetRepository}"`);
   }
 }

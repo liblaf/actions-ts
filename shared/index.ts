@@ -6,3 +6,4 @@ export {
   PullRequestFilter,
   prettyPullRequest,
 } from "./pulls";
+export { sleep } from "./utils";

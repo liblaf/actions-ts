@@ -1,6 +1,5 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import consola from "consola";
 import type { Octokit } from "octokit";
 import type { PullRequest } from "../../shared";
 import { PullRequestFilter, prettyPullRequest } from "../../shared";
@@ -16,7 +15,6 @@ async function addLabelsToPullRequest(
     issue_number: pull.number,
     labels: addLabels,
   });
-  consola.success(`Added labels ${addLabels} to ${prettyPullRequest(pull)}`);
   core.notice(`Added labels ${addLabels} to ${prettyPullRequest(pull)}`);
 }
 

@@ -1,6 +1,5 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import consola from "consola";
 import type { Octokit } from "octokit";
 import type { PullRequest, PullRequestReviewDecision } from "../../shared";
 import {
@@ -26,7 +25,6 @@ async function approvePullRequest(
     pull_number: pull.number,
     event: "APPROVE",
   });
-  consola.success(`Approved ${prettyPullRequest(pull)}`);
   core.notice(`Approved ${prettyPullRequest(pull)}`);
 }
 
