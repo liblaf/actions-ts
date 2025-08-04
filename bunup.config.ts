@@ -18,7 +18,7 @@ export default defineConfig({
     path.join(action, "src", "index.ts"),
     path.join(action, "src", "main.ts"),
   ]),
-  format: ["esm", "cjs", "iife"],
+  format: ["esm"], // reduce bundle size
   minify: true,
   splitting: false,
   dts: true,

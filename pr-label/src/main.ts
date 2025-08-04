@@ -1,7 +1,8 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
+import consola from "consola";
 import type { Octokit } from "octokit";
-import { PullRequestFilter } from "../../shared";
+import { PullRequestFilter, prettyPullRequest } from "../../shared";
 
 export async function run(): Promise<void> {
   const addLabels: string[] = core.getMultilineInput("add-labels", {
@@ -13,12 +14,21 @@ export async function run(): Promise<void> {
   const futures: Promise<any>[] = [];
   for await (const pull of filter.filter()) {
     futures.push(
-      octokit.rest.issues.addLabels({
-        owner: pull.base.repo.owner.login,
-        repo: pull.base.repo.name,
-        issue_number: pull.number,
-        labels: addLabels,
-      }),
+      octokit.rest.issues
+        .addLabels({
+          owner: pull.base.repo.owner.login,
+          repo: pull.base.repo.name,
+          issue_number: pull.number,
+          labels: addLabels,
+        })
+        .then((_value): void => {
+          consola.success(
+            `Added labels ${addLabels} to ${prettyPullRequest(pull)}`,
+          );
+          core.notice(
+            `Added labels ${addLabels} to ${prettyPullRequest(pull)}`,
+          );
+        }),
     );
   }
   await Promise.all(futures);
