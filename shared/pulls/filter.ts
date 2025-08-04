@@ -90,7 +90,7 @@ export class PullRequestFilter {
       );
       return;
     }
-    if (this.bot && pull.user!.type === "Bot") {
+    if (this.bot && pull.user!.type !== "Bot") {
       consola.info(
         `User type: ${pull.user!.type}. Skip ${prettyPullRequest(pull)}`,
       );
