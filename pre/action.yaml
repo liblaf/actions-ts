@@ -45,7 +45,6 @@ inputs:
     default: |-
       [
         "merge_group",
-        "repository_dispatch",
         "schedule",
         "workflow_dispatch"
       ]
