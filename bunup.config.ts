@@ -4,7 +4,7 @@ import type { BuildOptions, Plugin } from "bunup";
 import { defineConfig } from "bunup";
 import { copy, exports, shims } from "bunup/plugins";
 
-const actions: string[] = ["approve", "release", "template"];
+const actions: string[] = ["approve", "pre", "release", "template"];
 
 export default defineConfig({
   entry: actions.flatMap((action: string): string[] => [
@@ -20,16 +20,14 @@ export default defineConfig({
   target: "node",
   sourcemap: "inline",
   async onSuccess(_options: Partial<BuildOptions>): Promise<void> {
-    const futures: Promise<void>[] = [];
     for (const action of actions) {
-      futures.push(
-        fs.rename(
+      if (await fs.exists(path.join("dist", action, "src"))) {
+        await fs.rename(
           path.join("dist", action, "src"),
           path.join("dist", action, "dist"),
-        ),
-      );
+        );
+      }
     }
-    await Promise.all(futures);
   },
   plugins: [
     shims(),
