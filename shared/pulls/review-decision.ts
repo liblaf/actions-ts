@@ -1,6 +1,6 @@
 import type { graphql } from "@octokit/graphql/types";
 
-type PullRequestReviewDecision =
+export type PullRequestReviewDecision =
   | "APPROVED"
   | "CHANGES_REQUESTED"
   | "REVIEW_REQUIRED";

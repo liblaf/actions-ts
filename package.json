@@ -27,6 +27,26 @@
         "default": "./dist/approve/src/main.cjs"
       }
     },
+    "./pr-label/src": {
+      "import": {
+        "types": "./dist/pr-label/src/index.d.ts",
+        "default": "./dist/pr-label/src/index.js"
+      },
+      "require": {
+        "types": "./dist/pr-label/src/index.d.cts",
+        "default": "./dist/pr-label/src/index.cjs"
+      }
+    },
+    "./pr-label/src/main": {
+      "import": {
+        "types": "./dist/pr-label/src/main.d.ts",
+        "default": "./dist/pr-label/src/main.js"
+      },
+      "require": {
+        "types": "./dist/pr-label/src/main.d.cts",
+        "default": "./dist/pr-label/src/main.cjs"
+      }
+    },
     "./release/src": {
       "import": {
         "types": "./dist/release/src/index.d.ts",

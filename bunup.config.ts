@@ -7,6 +7,7 @@ import { copy, exports, shims } from "bunup/plugins";
 const actions: string[] = [
   "approve",
   "authenticate",
+  "pr-label",
   "pre",
   "release",
   "template",
