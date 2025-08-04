@@ -15,9 +15,6 @@ inputs:
     default: ${{ github.repository }}
 
   # orhun/git-cliff-action
-  version:
-    description: git-cliff version
-    required: false
   config:
     description: config file location
     required: false
@@ -57,7 +54,6 @@ runs:
       name: Generate Changelog
       uses: orhun/git-cliff-action@v4
       with:
-        version: ${{ inputs.version }}
         config: ${{ steps.config.outputs.config }}
         args: ${{ inputs.args }}
         github_token: ${{ inputs.token }}
