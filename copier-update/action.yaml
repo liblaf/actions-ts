@@ -1,0 +1,21 @@
+name: Copier Update
+
+author: liblaf
+
+description: Copier update
+
+runs:
+  using: composite
+  steps:
+    - name: Copier Update
+      run: |-
+        copier=(pipx run --pip-args cookiecutter copier)
+        find '.config/copier/' -iname '.copier-answers*' -type f -print0 |
+          while IFS= read -r -d '' answers_file; do
+            echo "::group::$answers_file"
+            "${copier[@]}" recopy --trust --answers-file "$answers_file" --force
+            echo "::endgroup::"
+          done
+      shell: bash
+      env:
+        FORCE_COLOR: 1

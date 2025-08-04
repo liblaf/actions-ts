@@ -9,6 +9,7 @@ const ACTIONS: string[] = [
   "authenticate",
   "changelog",
   "commit",
+  "copier-update",
   "pr-label",
   "pre",
   "release",
