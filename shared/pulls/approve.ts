@@ -43,16 +43,16 @@ export function prettyPullRequest(pull: PullRequest): string {
 
 export class Reviewer {
   constructor(
-    private readonly reviewOctokit: Api,
+    private readonly octokit: Api & {
+      graphql: graphql;
+      paginate: PaginateInterface;
+    },
     public readonly authors: string[] = [],
     public readonly bot: boolean = true,
     public readonly labels: string[] = [],
   ) {}
 
-  public async approvePullRequest(
-    octokit: { graphql: graphql },
-    pull: PullRequest,
-  ): Promise<void> {
+  public async approvePullRequest(pull: PullRequest): Promise<void> {
     if (pull.state !== "open") {
       consola.info(`State: ${pull.state}. Skip ${prettyPullRequest(pull)}`);
       return;
@@ -78,18 +78,21 @@ export class Reviewer {
         return;
       }
     }
-    const reviewDecision = await getPullRequestReviewDecision(octokit.graphql, {
-      owner: pull.base.repo.owner.login,
-      repo: pull.base.repo.name,
-      pull_number: pull.number,
-    });
+    const reviewDecision = await getPullRequestReviewDecision(
+      this.octokit.graphql,
+      {
+        owner: pull.base.repo.owner.login,
+        repo: pull.base.repo.name,
+        pull_number: pull.number,
+      },
+    );
     if (reviewDecision !== "REVIEW_REQUIRED") {
       consola.info(
         `Review Decision: ${reviewDecision}. Skip ${prettyPullRequest(pull)}`,
       );
       return;
     }
-    await this.reviewOctokit.rest.pulls.createReview({
+    await this.octokit.rest.pulls.createReview({
       owner: pull.base.repo.owner.login,
       repo: pull.base.repo.name,
       pull_number: pull.number,
@@ -99,10 +102,7 @@ export class Reviewer {
     core.notice(`Approved ${prettyPullRequest(pull)}`);
   }
 
-  public async approveRepository(
-    octokit: Api & { graphql: graphql; paginate: PaginateInterface },
-    repository: Repository,
-  ): Promise<void> {
+  public async approveRepository(repository: Repository): Promise<void> {
     if (repository.archived) {
       consola.info(`Repository is archived. Skip ${repository.full_name}`);
       return;
@@ -112,34 +112,30 @@ export class Reviewer {
       return;
     }
     const futures: Promise<void>[] = [];
-    for await (const { data: pulls } of octokit.paginate.iterator(
-      octokit.rest.pulls.list,
+    for await (const { data: pulls } of this.octokit.paginate.iterator(
+      this.octokit.rest.pulls.list,
       {
         owner: repository.owner.login,
         repo: repository.name,
         state: "open",
       },
     )) {
-      for (const pull of pulls)
-        futures.push(this.approvePullRequest(octokit, pull));
+      for (const pull of pulls) futures.push(this.approvePullRequest(pull));
     }
     await Promise.all(futures);
   }
 
-  public async approveOwner(
-    octokit: Api & { graphql: graphql; paginate: PaginateInterface },
-    owner: string,
-  ): Promise<void> {
+  public async approveOwner(owner: string): Promise<void> {
     const futures: Promise<void>[] = [];
-    for await (const { data: repositories } of octokit.paginate.iterator(
-      octokit.rest.repos.listForUser,
+    for await (const { data: repositories } of this.octokit.paginate.iterator(
+      this.octokit.rest.repos.listForUser,
       {
         username: owner,
         type: "owner",
       },
     )) {
       for (const repository of repositories) {
-        futures.push(this.approveRepository(octokit, repository));
+        futures.push(this.approveRepository(repository));
       }
     }
     await Promise.all(futures);

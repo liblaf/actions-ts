@@ -26,17 +26,17 @@ export async function run(): Promise<void> {
       repo,
       pull_number,
     });
-    await reviewer.approvePullRequest(octokit, pull);
+    await reviewer.approvePullRequest(pull);
     return;
   }
   const [owner, repo] = repository.split("/");
   if (owner && repo) {
-    const { data: repoData } = await octokit.rest.repos.get({ owner, repo });
-    await reviewer.approveRepository(octokit, repoData);
+    const { data: repository } = await octokit.rest.repos.get({ owner, repo });
+    await reviewer.approveRepository(repository);
     return;
   }
   if (owner) {
-    await reviewer.approveOwner(octokit, owner);
+    await reviewer.approveOwner(owner);
     return;
   }
   throw new Error(`Input required and not supplied: repository`);
