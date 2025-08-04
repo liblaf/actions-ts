@@ -88,13 +88,7 @@ runs:
         workflow="${workflow##*'/'}"
         printf 'workflow-file=%s\n' "$workflow" >> "$GITHUB_OUTPUT"
       shell: bash
-    - id: delete-cancelled-runs
-      name: Delete Cancelled Runs
-      uses: MercuryTechnologies/delete-cancelled-runs@1.0.0
-      with:
-        workflow-file: ${{ steps.workflow.outputs.workflow-file }}
-        max-deletions: ${{ inputs.max-deletions }}
-        github-token: ${{ github.token }}
+
     - id: skip-duplicate-actions
       name: Skip Duplicate Actions
       uses: fkirc/skip-duplicate-actions@v5
@@ -107,3 +101,11 @@ runs:
         skip_after_successful_duplicate: ${{ inputs.skip-after-successful-duplicate }}
         do_not_skip: ${{ inputs.do-not-skip }}
         concurrent_skipping: ${{ inputs.concurrent-skipping }}
+
+    - id: delete-cancelled-runs
+      name: Delete Cancelled Runs
+      uses: MercuryTechnologies/delete-cancelled-runs@1.0.0
+      with:
+        workflow-file: ${{ steps.workflow.outputs.workflow-file }}
+        max-deletions: ${{ inputs.max-deletions }}
+        github-token: ${{ github.token }}
