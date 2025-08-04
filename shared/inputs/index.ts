@@ -1,1 +1,1 @@
-export { splitOwnerRepo } from "./repository";
+export { getOwnerRepo, splitOwnerRepo } from "./repository";

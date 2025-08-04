@@ -7,6 +7,18 @@
     "dist"
   ],
   "exports": {
+    "./template/src": {
+      "import": {
+        "types": "./dist/template/src/index.d.ts",
+        "default": "./dist/template/src/index.js"
+      }
+    },
+    "./template/src/main": {
+      "import": {
+        "types": "./dist/template/src/main.d.ts",
+        "default": "./dist/template/src/main.js"
+      }
+    },
     "./approve/src": {
       "import": {
         "types": "./dist/approve/src/index.d.ts",
@@ -43,16 +55,16 @@
         "default": "./dist/release/src/main.js"
       }
     },
-    "./template/src": {
+    "./ruleset-import/src": {
       "import": {
-        "types": "./dist/template/src/index.d.ts",
-        "default": "./dist/template/src/index.js"
+        "types": "./dist/ruleset-import/src/index.d.ts",
+        "default": "./dist/ruleset-import/src/index.js"
       }
     },
-    "./template/src/main": {
+    "./ruleset-import/src/main": {
       "import": {
-        "types": "./dist/template/src/main.d.ts",
-        "default": "./dist/template/src/main.js"
+        "types": "./dist/ruleset-import/src/main.d.ts",
+        "default": "./dist/ruleset-import/src/main.js"
       }
     }
   },

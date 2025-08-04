@@ -13,6 +13,7 @@ const ACTIONS: string[] = [
   "pr-label",
   "pre",
   "release",
+  "ruleset-import",
   "template",
 ];
 

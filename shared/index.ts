@@ -1,5 +1,5 @@
 export { makeApp } from "./app";
-export { splitOwnerRepo } from "./inputs";
+export { getOwnerRepo, splitOwnerRepo } from "./inputs";
 export type { PullRequest, PullRequestReviewDecision } from "./pulls";
 export {
   getPullRequestReviewDecision,
