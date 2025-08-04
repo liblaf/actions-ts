@@ -4,7 +4,13 @@ import type { BuildOptions, Plugin } from "bunup";
 import { defineConfig } from "bunup";
 import { copy, exports, shims } from "bunup/plugins";
 
-const actions: string[] = ["approve", "pre", "release", "template"];
+const actions: string[] = [
+  "approve",
+  "authenticate",
+  "pre",
+  "release",
+  "template",
+];
 
 export default defineConfig({
   entry: actions.flatMap((action: string): string[] => [
