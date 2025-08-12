@@ -10,6 +10,7 @@ const ACTIONS: string[] = [
   "changelog",
   "commit",
   "copier-update",
+  "install",
   "mega-linter",
   "pr-label",
   "pre",
