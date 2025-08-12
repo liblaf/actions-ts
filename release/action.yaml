@@ -16,7 +16,7 @@ inputs:
     description: Mark the release as a prerelease
     required: false
     default: "false"
-  repo:
+  repository:
     description: Repository name with owner
     required: false
     default: ${{ github.repository }}
