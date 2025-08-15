@@ -16,6 +16,7 @@ const ACTIONS: string[] = [
   "pre",
   "release",
   "ruleset-import",
+  "setup-pages",
   "template",
 ];
 

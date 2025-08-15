@@ -1,4 +1,4 @@
-import { RequestError } from "@octokit/request-error";
+import { RequestError } from "octokit";
 import { splitOwnerRepo } from "../../shared";
 import type { Octokit, Release } from "./types";
 

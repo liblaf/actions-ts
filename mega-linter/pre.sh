@@ -8,7 +8,7 @@ LINTER_RULES_PATH='tmp.6NE8UxMvCk/linters'
 MISSING_FILES=()
 
 find "$LINTER_RULES_PATH" -type f -print0 |
-  while IFS= read -r -d '' file; do
+  while IFS= read -d '' -r file; do
     filename="$(basename -- "$file")"
     if [[ -f $filename ]]; then continue; fi
     cp --archive --no-target-directory --verbose "$file" "$filename"
