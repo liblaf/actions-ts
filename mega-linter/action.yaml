@@ -57,7 +57,7 @@ runs:
       shell: bash
     - if: success() || failure()
       name: Clean Linter Rules
-      run: rm --force --recursive 'tmp.6NE8UxMvCk'
+      run: sudo rm --force --recursive 'tmp.6NE8UxMvCk'
       shell: bash
     - if: success() || failure()
       name: Prepare Commit
