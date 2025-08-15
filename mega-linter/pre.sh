@@ -15,4 +15,4 @@ find "$LINTER_RULES_PATH" -type f -print0 |
     MISSING_FILES+=("$filename")
   done
 
-printf '%s\n' "${MISSING_FILES[@]}" > "$LINTER_RULES_PATH/missing-files.list"
+printf '%s\n' "${MISSING_FILES[@]}" > "$RUNNER_TEMP/missing-linter-files.list"
