@@ -16,3 +16,5 @@ find "$LINTER_RULES_PATH" -type f -print0 |
   done
 
 printf '%s\n' "${MISSING_FILES[@]}" > "$RUNNER_TEMP/missing-linter-files.list"
+echo "Missing linter files:"
+cat "$RUNNER_TEMP/missing-linter-files.list"

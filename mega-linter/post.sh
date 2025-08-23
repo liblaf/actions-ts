@@ -3,7 +3,9 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+echo "Missing linter files:"
+cat "$RUNNER_TEMP/missing-linter-files.list"
+
 while read -r filename; do
-  if [[ -z $filename ]]; then continue; fi
   rm --force --verbose "$filename"
 done < "$RUNNER_TEMP/missing-linter-files.list"
