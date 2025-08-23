@@ -7,28 +7,10 @@
     "dist"
   ],
   "exports": {
-    "./template/src": {
-      "import": {
-        "types": "./dist/template/src/index.d.ts",
-        "default": "./dist/template/src/index.js"
-      }
-    },
-    "./template/src/main": {
-      "import": {
-        "types": "./dist/template/src/main.d.ts",
-        "default": "./dist/template/src/main.js"
-      }
-    },
     "./approve/src": {
       "import": {
         "types": "./dist/approve/src/index.d.ts",
         "default": "./dist/approve/src/index.js"
-      }
-    },
-    "./approve/src/main": {
-      "import": {
-        "types": "./dist/approve/src/main.d.ts",
-        "default": "./dist/approve/src/main.js"
       }
     },
     "./pr-label/src": {
@@ -37,22 +19,10 @@
         "default": "./dist/pr-label/src/index.js"
       }
     },
-    "./pr-label/src/main": {
-      "import": {
-        "types": "./dist/pr-label/src/main.d.ts",
-        "default": "./dist/pr-label/src/main.js"
-      }
-    },
     "./release/src": {
       "import": {
         "types": "./dist/release/src/index.d.ts",
         "default": "./dist/release/src/index.js"
-      }
-    },
-    "./release/src/main": {
-      "import": {
-        "types": "./dist/release/src/main.d.ts",
-        "default": "./dist/release/src/main.js"
       }
     },
     "./ruleset-import/src": {
@@ -61,10 +31,16 @@
         "default": "./dist/ruleset-import/src/index.js"
       }
     },
-    "./ruleset-import/src/main": {
+    "./setup-pages/src": {
       "import": {
-        "types": "./dist/ruleset-import/src/main.d.ts",
-        "default": "./dist/ruleset-import/src/main.js"
+        "types": "./dist/setup-pages/src/index.d.ts",
+        "default": "./dist/setup-pages/src/index.js"
+      }
+    },
+    "./template/src": {
+      "import": {
+        "types": "./dist/template/src/index.d.ts",
+        "default": "./dist/template/src/index.js"
       }
     }
   },

@@ -17,15 +17,17 @@ const ACTIONS: string[] = [
   "release",
   "ruleset-import",
   "setup-pages",
+  "setup-python",
   "template",
 ];
 
 export default defineConfig({
   entry: ACTIONS.flatMap((action: string): string[] => [
     path.join(action, "src", "index.ts"),
-    path.join(action, "src", "main.ts"),
+    // to reduce bundle size, we compile entry points only
+    // path.join(action, "src", "main.ts"),
   ]),
-  format: ["esm"], // reduce bundle size
+  format: ["esm"], // to reduce bundle size, we use ESM format only
   minify: true,
   splitting: false,
   dts: true,
