@@ -2,3 +2,6 @@
 
 [env]
 NODE_OPTIONS = "--no-experimental-strip-types"
+
+[hooks.enter]
+script = "bun install"

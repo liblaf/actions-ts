@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import type { BuildOptions, Plugin } from "bunup";
+import type { BuildOptions, BunupPlugin } from "bunup";
 import { defineConfig } from "bunup";
 import { copy, exports, shims } from "bunup/plugins";
 
@@ -31,7 +31,6 @@ export default defineConfig({
   minify: true,
   splitting: false,
   dts: true,
-  preferredTsconfigPath: ".config/copier/tsconfig.build.json",
   noExternal: [/.*/],
   target: "node",
   sourcemap: "inline",
@@ -49,7 +48,7 @@ export default defineConfig({
     shims(),
     exports(),
     ...(await Promise.all(
-      ACTIONS.map(async (action: string): Promise<Plugin> => {
+      ACTIONS.map(async (action: string): Promise<BunupPlugin> => {
         const sources: string[] = (await fs.readdir(action))
           .filter((child: string): boolean => child !== "src")
           .map((child: string): string => path.join(action, child));

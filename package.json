@@ -1,55 +1,35 @@
 {
   "name": "@liblaf/actions",
-  "description": "TODO",
-  "version": "0.0.0",
+  "description": "",
+  "version": "0.1.0",
   "type": "module",
   "files": [
     "dist"
   ],
   "exports": {
     "./approve/src": {
-      "import": {
-        "types": "./dist/approve/src/index.d.ts",
-        "default": "./dist/approve/src/index.js"
-      }
+      "import": "./dist/approve/src/index.js"
     },
     "./pr-label/src": {
-      "import": {
-        "types": "./dist/pr-label/src/index.d.ts",
-        "default": "./dist/pr-label/src/index.js"
-      }
+      "import": "./dist/pr-label/src/index.js"
     },
     "./release/src": {
-      "import": {
-        "types": "./dist/release/src/index.d.ts",
-        "default": "./dist/release/src/index.js"
-      }
+      "import": "./dist/release/src/index.js"
     },
     "./ruleset-import/src": {
-      "import": {
-        "types": "./dist/ruleset-import/src/index.d.ts",
-        "default": "./dist/ruleset-import/src/index.js"
-      }
+      "import": "./dist/ruleset-import/src/index.js"
     },
     "./setup-pages/src": {
-      "import": {
-        "types": "./dist/setup-pages/src/index.d.ts",
-        "default": "./dist/setup-pages/src/index.js"
-      }
+      "import": "./dist/setup-pages/src/index.js"
     },
     "./template/src": {
-      "import": {
-        "types": "./dist/template/src/index.d.ts",
-        "default": "./dist/template/src/index.js"
-      }
+      "import": "./dist/template/src/index.js"
     }
   },
-  "keywords": [
-    "TODO"
-  ],
-  "homepage": "https://github.com/liblaf/actions",
+  "keywords": [],
+  "homepage": "https://github.com/liblaf/actions-ts",
   "bugs": {
-    "url": "https://github.com/liblaf/actions/issues"
+    "url": "https://github.com/liblaf/actions-ts/issues"
   },
   "license": "MIT",
   "author": {
@@ -58,43 +38,58 @@
     "email": "30631553+liblaf@users.noreply.github.com"
   },
   "bin": {},
-  "repository": "github:liblaf/actions",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liblaf/actions-ts.git"
+  },
   "funding": {
-    "url": "https://github.com/liblaf/actions?sponsor=1",
+    "url": "https://github.com/liblaf/actions-ts?sponsor=1",
     "type": "github"
   },
   "scripts": {
     "build": "bunup",
-    "lint": "biome check --write",
-    "prepack": "npm run build"
+    "format:fix": "biome format --write",
+    "format": "biome format",
+    "lint:fix": "biome check --write",
+    "lint": "biome check",
+    "prepack": "npm run build",
+    "test:coverage": "bun test --coverage",
+    "test:watch": "bun test --watch",
+    "test": "bun test",
+    "tsc": "tsc --noEmit"
   },
   "dependencies": {
-    "@actions/core": "^1.11.1",
-    "@actions/github": "^6.0.1",
-    "@actions/glob": "^0.5.0",
-    "@octokit/app": "^16.0.1",
-    "@octokit/core": "^7.0.3",
-    "@octokit/graphql": "^9.0.1",
-    "@octokit/openapi-types": "^25.1.0",
-    "@octokit/plugin-paginate-rest": "^13.1.1",
-    "@octokit/plugin-rest-endpoint-methods": "^16.0.0",
-    "consola": "^3.4.2",
-    "octokit": "^5.0.3"
+    "@actions/core": "^1",
+    "@actions/github": "^6",
+    "@actions/glob": "^0.5",
+    "@octokit/app": "^16",
+    "@octokit/core": "^7",
+    "@octokit/graphql": "^9",
+    "@octokit/openapi-types": "^25",
+    "@octokit/plugin-paginate-rest": "^13",
+    "@octokit/plugin-rest-endpoint-methods": "^16",
+    "consola": "^3",
+    "octokit": "^5"
   },
   "devDependencies": {
-    "@biomejs/biome": "latest",
-    "@github/local-action": "^5.1.0",
-    "@tsconfig/bun": "latest",
-    "@types/bun": "latest",
-    "bunup": "latest"
+    "@biomejs/biome": "^2",
+    "@github/local-action": "^5",
+    "@liblaf/config": "^0.1.0",
+    "@types/node": "^24",
+    "bunup": "^0.11"
   },
   "peerDependencies": {
-    "typescript": "latest"
+    "typescript": "^5"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/",
     "provenance": true
   },
-  "readme": "README.md"
+  "readme": "./README.md"
 }

@@ -1,6 +1,4 @@
 {
-  "extends": "@tsconfig/bun/tsconfig.json",
-  "compilerOptions": {
-    "experimentalDecorators": true
-  }
+  "extends": "@liblaf/config/tsconfig",
+  "exclude": ["node_modules", "dist", "bunup.config.ts"]
 }
