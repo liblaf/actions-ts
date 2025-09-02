@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import type { BuildOptions, BunupPlugin } from "bunup";
 import { defineConfig } from "bunup";
-import { copy, exports, shims, unused } from "bunup/plugins";
+import { copy, shims, unused } from "bunup/plugins";
 
 const entry: string[] = [];
 const plugins: BunupPlugin[] = [];
@@ -40,5 +40,5 @@ export default defineConfig({
       }
     }
   },
-  plugins: [shims(), exports(), ...plugins, unused()],
+  plugins: [shims(), ...plugins, unused()],
 });

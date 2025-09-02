@@ -6,26 +6,6 @@
   "files": [
     "dist"
   ],
-  "exports": {
-    "./approve/src": {
-      "import": "./dist/approve/src/index.js"
-    },
-    "./pr-label/src": {
-      "import": "./dist/pr-label/src/index.js"
-    },
-    "./release/src": {
-      "import": "./dist/release/src/index.js"
-    },
-    "./ruleset-import/src": {
-      "import": "./dist/ruleset-import/src/index.js"
-    },
-    "./setup-pages/src": {
-      "import": "./dist/setup-pages/src/index.js"
-    },
-    "./template/src": {
-      "import": "./dist/template/src/index.js"
-    }
-  },
   "keywords": [],
   "homepage": "https://github.com/liblaf/actions-ts",
   "bugs": {
