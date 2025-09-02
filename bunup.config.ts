@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import type { BuildOptions, BunupPlugin } from "bunup";
 import { defineConfig } from "bunup";
-import { copy, exports, shims } from "bunup/plugins";
+import { copy, exports, shims, unused } from "bunup/plugins";
 
 const entry: string[] = [];
 const plugins: BunupPlugin[] = [];
@@ -28,7 +28,6 @@ export default defineConfig({
   minify: true,
   splitting: false,
   dts: false,
-  noExternal: [/.*/],
   target: "node",
   sourcemap: "inline",
   async onSuccess(_options: Partial<BuildOptions>): Promise<void> {
@@ -41,5 +40,5 @@ export default defineConfig({
       }
     }
   },
-  plugins: [shims(), exports(), ...plugins],
+  plugins: [shims(), exports(), ...plugins, unused()],
 });

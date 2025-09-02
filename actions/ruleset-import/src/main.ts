@@ -2,7 +2,7 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 import type { GitHub } from "@actions/github/lib/utils";
 import type { components } from "@octokit/openapi-types";
-import { splitOwnerRepo } from "../../../shared";
+import { splitOwnerRepo } from "../../../lib";
 
 type Octokit = InstanceType<typeof GitHub>;
 type Ruleset = components["schemas"]["repository-ruleset"];

@@ -2,7 +2,7 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 import type { GitHub } from "@actions/github/lib/utils";
 import { RequestError } from "octokit";
-import { getOwnerRepo } from "../../../shared";
+import { getOwnerRepo } from "../../../lib";
 
 async function hasPages(
   octokit: InstanceType<typeof GitHub>,

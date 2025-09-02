@@ -3,25 +3,23 @@
   "workspaces": {
     "": {
       "name": "@liblaf/actions",
-      "dependencies": {
+      "devDependencies": {
         "@actions/core": "^1",
         "@actions/github": "^6",
         "@actions/glob": "^0.5",
+        "@biomejs/biome": "^2",
+        "@github/local-action": "^5",
+        "@liblaf/config": "^0.1.0",
         "@octokit/app": "^16",
         "@octokit/core": "^7",
         "@octokit/graphql": "^9",
         "@octokit/openapi-types": "^25",
         "@octokit/plugin-paginate-rest": "^13",
         "@octokit/plugin-rest-endpoint-methods": "^16",
-        "consola": "^3.4.2",
-        "octokit": "^5",
-      },
-      "devDependencies": {
-        "@biomejs/biome": "^2",
-        "@github/local-action": "^5",
-        "@liblaf/config": "^0.1.0",
-        "@types/node": "latest",
+        "@types/node": "^24",
         "bunup": "^0.11",
+        "consola": "^3",
+        "octokit": "^5",
       },
       "peerDependencies": {
         "typescript": "^5",
@@ -574,7 +572,7 @@
 
     "typescript": ["typescript@5.9.2", "https://mirrors.huaweicloud.com/repository/npm/typescript/-/typescript-5.9.2.tgz", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A=="],
 
-    "undici": ["undici@7.13.0", "https://mirrors.huaweicloud.com/repository/npm/undici/-/undici-7.13.0.tgz", {}, "sha512-l+zSMssRqrzDcb3fjMkjjLGmuiiK2pMIcV++mJaAc9vhjSGpvM7h43QgP+OAMb1GImHmbPyG2tBXeuyG5iY4gA=="],
+    "undici": ["undici@5.29.0", "https://mirrors.huaweicloud.com/repository/npm/undici/-/undici-5.29.0.tgz", { "dependencies": { "@fastify/busboy": "^2.0.0" } }, "sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg=="],
 
     "undici-types": ["undici-types@7.10.0", "https://registry.npmmirror.com/undici-types/-/undici-types-7.10.0.tgz", {}, "sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag=="],
 
@@ -616,13 +614,11 @@
 
     "@actions/github/@octokit/plugin-rest-endpoint-methods": ["@octokit/plugin-rest-endpoint-methods@10.4.1", "https://mirrors.huaweicloud.com/repository/npm/@octokit/plugin-rest-endpoint-methods/-/plugin-rest-endpoint-methods-10.4.1.tgz", { "dependencies": { "@octokit/types": "^12.6.0" }, "peerDependencies": { "@octokit/core": "5" } }, "sha512-xV1b+ceKV9KytQe3zCVqjg+8GTGfDYwaT1ATU5isiUyVtlVAO3HNdzpS4sr4GBx4hxQ46s7ITtZrAsxG22+rVg=="],
 
-    "@actions/github/undici": ["undici@5.29.0", "https://mirrors.huaweicloud.com/repository/npm/undici/-/undici-5.29.0.tgz", { "dependencies": { "@fastify/busboy": "^2.0.0" } }, "sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg=="],
-
-    "@actions/http-client/undici": ["undici@5.29.0", "https://mirrors.huaweicloud.com/repository/npm/undici/-/undici-5.29.0.tgz", { "dependencies": { "@fastify/busboy": "^2.0.0" } }, "sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg=="],
-
     "@bufbuild/protoplugin/typescript": ["typescript@5.4.5", "https://mirrors.huaweicloud.com/repository/npm/typescript/-/typescript-5.4.5.tgz", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ=="],
 
     "@github/local-action/@octokit/core": ["@octokit/core@6.1.6", "https://mirrors.huaweicloud.com/repository/npm/@octokit/core/-/core-6.1.6.tgz", { "dependencies": { "@octokit/auth-token": "^5.0.0", "@octokit/graphql": "^8.2.2", "@octokit/request": "^9.2.3", "@octokit/request-error": "^6.1.8", "@octokit/types": "^14.0.0", "before-after-hook": "^3.0.2", "universal-user-agent": "^7.0.0" } }, "sha512-kIU8SLQkYWGp3pVKiYzA5OSaNF5EE03P/R8zEmmrG6XwOg5oBjXyQVVIauQ0dgau4zYhpZEhJrvIYt6oM+zZZA=="],
+
+    "@github/local-action/undici": ["undici@7.13.0", "https://mirrors.huaweicloud.com/repository/npm/undici/-/undici-7.13.0.tgz", {}, "sha512-l+zSMssRqrzDcb3fjMkjjLGmuiiK2pMIcV++mJaAc9vhjSGpvM7h43QgP+OAMb1GImHmbPyG2tBXeuyG5iY4gA=="],
 
     "@octokit/auth-app/@octokit/request": ["@octokit/request@10.0.3", "https://mirrors.huaweicloud.com/repository/npm/@octokit/request/-/request-10.0.3.tgz", { "dependencies": { "@octokit/endpoint": "^11.0.0", "@octokit/request-error": "^7.0.0", "@octokit/types": "^14.0.0", "fast-content-type-parse": "^3.0.0", "universal-user-agent": "^7.0.2" } }, "sha512-V6jhKokg35vk098iBqp2FBKunk3kMTXlmq+PtbV9Gl3TfskWlebSofU9uunVKhUN7xl+0+i5vt0TGTG8/p/7HA=="],
 

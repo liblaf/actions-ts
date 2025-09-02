@@ -1,8 +1,8 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 import type { Octokit } from "octokit";
-import type { PullRequest } from "../../../shared";
-import { PullRequestFilter, prettyPullRequest } from "../../../shared";
+import type { PullRequest } from "../../../lib";
+import { PullRequestFilter, prettyPullRequest } from "../../../lib";
 
 async function addLabelsToPullRequest(
   octokit: Octokit,
