@@ -1,5 +1,5 @@
 import consola from "consola";
-import { splitOwnerRepo } from "../../shared";
+import { splitOwnerRepo } from "../../../shared";
 import type { Octokit, Release, ReleaseOptions } from "./types";
 import { uploadReleaseAssets } from "./upload-assets";
 

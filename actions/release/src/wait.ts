@@ -1,4 +1,4 @@
-import { sleep } from "../../shared";
+import { sleep } from "../../../shared";
 import { getReleaseByTag } from "./get";
 import type { Octokit, Release } from "./types";
 

@@ -1,5 +1,5 @@
 import consola from "consola";
-import { splitOwnerRepo } from "../../shared";
+import { splitOwnerRepo } from "../../../shared";
 import type { Octokit, Release } from "./types";
 import { waitForReleaseDeletion } from "./wait";
 

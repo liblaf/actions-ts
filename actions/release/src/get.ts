@@ -1,5 +1,5 @@
 import { RequestError } from "octokit";
-import { splitOwnerRepo } from "../../shared";
+import { splitOwnerRepo } from "../../../shared";
 import type { Octokit, Release } from "./types";
 
 export async function getReleaseByTag(

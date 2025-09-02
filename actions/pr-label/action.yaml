@@ -1,12 +1,15 @@
 # yaml-language-server: $schema=https://www.schemastore.org/github-action.json
 
-name: Approve
+name: PR Label
 
 author: liblaf
 
-description: Approve
+description: PR Label
 
 inputs:
+  add-labels:
+    description: Labels to add to the pull request.
+    required: true
   authors:
     description: authors
     required: false
@@ -31,5 +34,5 @@ inputs:
     default: ${{ github.token }}
 
 runs:
-  using: node20
+  using: node24
   main: dist/index.js

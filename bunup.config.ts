@@ -4,38 +4,35 @@ import type { BuildOptions, BunupPlugin } from "bunup";
 import { defineConfig } from "bunup";
 import { copy, exports, shims } from "bunup/plugins";
 
-const ACTIONS: string[] = [
-  "approve",
-  "authenticate",
-  "changelog",
-  "commit",
-  "copier-update",
-  "install",
-  "mega-linter",
-  "pr-label",
-  "pre",
-  "release",
-  "ruleset-import",
-  "setup-pages",
-  "setup-python",
-  "template",
-];
+const entry: string[] = [];
+const plugins: BunupPlugin[] = [];
+
+const actions: string[] = await fs.readdir("actions");
+for (const action of actions) {
+  const file: string = path.join("actions", action, "src", "index.ts");
+  if (await fs.exists(file)) entry.push(file);
+}
+for (const action of actions) {
+  const sources: string[] = [];
+  for (const child of await fs.readdir(path.join("actions", action))) {
+    if (child === "src") continue;
+    sources.push(path.join("actions", action, child));
+  }
+  if (sources.length > 0)
+    plugins.push(copy(sources, path.join("dist", action)));
+}
 
 export default defineConfig({
-  entry: ACTIONS.flatMap((action: string): string[] => [
-    path.join(action, "src", "index.ts"),
-    // to reduce bundle size, we compile entry points only
-    // path.join(action, "src", "main.ts"),
-  ]),
-  format: ["esm"], // to reduce bundle size, we use ESM format only
+  entry: entry,
+  format: ["esm"],
   minify: true,
   splitting: false,
-  dts: true,
+  dts: false,
   noExternal: [/.*/],
   target: "node",
   sourcemap: "inline",
   async onSuccess(_options: Partial<BuildOptions>): Promise<void> {
-    for (const action of ACTIONS) {
+    for (const action of actions) {
       if (await fs.exists(path.join("dist", action, "src"))) {
         await fs.rename(
           path.join("dist", action, "src"),
@@ -44,16 +41,5 @@ export default defineConfig({
       }
     }
   },
-  plugins: [
-    shims(),
-    exports(),
-    ...(await Promise.all(
-      ACTIONS.map(async (action: string): Promise<BunupPlugin> => {
-        const sources: string[] = (await fs.readdir(action))
-          .filter((child: string): boolean => child !== "src")
-          .map((child: string): string => path.join(action, child));
-        return copy(sources, path.join("dist", action));
-      }),
-    )),
-  ],
+  plugins: [shims(), exports(), ...plugins],
 });

@@ -1,12 +1,12 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 import type { Octokit } from "octokit";
-import type { PullRequest, PullRequestReviewDecision } from "../../shared";
+import type { PullRequest, PullRequestReviewDecision } from "../../../shared";
 import {
   getPullRequestReviewDecision,
   PullRequestFilter,
   prettyPullRequest,
-} from "../../shared";
+} from "../../../shared";
 
 async function approvePullRequest(
   octokit: Octokit,
