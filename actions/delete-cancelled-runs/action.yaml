@@ -14,7 +14,7 @@ inputs:
   token:
     description: GitHub access token
     default: ${{ github.token }}
-  workflow-id:
+  workflow:
     description: The ID of the workflow. You can also pass the workflow file name as a string.
     default: ${{ github.workflow_ref }}
 
